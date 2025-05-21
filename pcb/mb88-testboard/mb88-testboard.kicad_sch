@@ -4,6 +4,11 @@
 	(generator_version "9.0")
 	(uuid "27cb38f9-12de-466e-a080-2dfa091752ed")
 	(paper "A4")
+	(title_block
+		(title "Morse Board 8088 TEST BOARD")
+		(date "2025-05-21")
+		(rev "1")
+	)
 	(lib_symbols
 		(symbol "74xx:74HC00"
 			(pin_names
@@ -18783,7 +18788,7 @@
 			)
 		)
 		(instances
-			(project "morseboard-8088"
+			(project "mb88-testboard"
 				(path "/27cb38f9-12de-466e-a080-2dfa091752ed"
 					(page "2")
 				)

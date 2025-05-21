@@ -5,13 +5,13 @@
       "Application": "Pcbnew",
       "Version": "9.0.1"
     },
-    "CreationDate": "2025-05-07T19:21:37+02:00"
+    "CreationDate": "2025-05-21T13:32:22+02:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
-      "Name": "morseboard-8088",
-      "GUID": "6d6f7273-6562-46f6-9172-642d38303838",
-      "Revision": "rev?"
+      "Name": "mb88-testboard",
+      "GUID": "6d623838-2d74-4657-9374-626f6172642e",
+      "Revision": "1"
     },
     "Size": {
       "X": 172.135,
@@ -34,47 +34,47 @@
   ],
   "FilesAttributes": [
     {
-      "Path": "morseboard-8088-F_Cu.gbr",
+      "Path": "mb88-testboard-F_Cu.gbr",
       "FileFunction": "Copper,L1,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "morseboard-8088-B_Cu.gbr",
+      "Path": "mb88-testboard-B_Cu.gbr",
       "FileFunction": "Copper,L2,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "morseboard-8088-F_Paste.gbr",
+      "Path": "mb88-testboard-F_Paste.gbr",
       "FileFunction": "SolderPaste,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "morseboard-8088-B_Paste.gbr",
+      "Path": "mb88-testboard-B_Paste.gbr",
       "FileFunction": "SolderPaste,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "morseboard-8088-F_Silkscreen.gbr",
+      "Path": "mb88-testboard-F_Silkscreen.gbr",
       "FileFunction": "Legend,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "morseboard-8088-B_Silkscreen.gbr",
+      "Path": "mb88-testboard-B_Silkscreen.gbr",
       "FileFunction": "Legend,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "morseboard-8088-F_Mask.gbr",
+      "Path": "mb88-testboard-F_Mask.gbr",
       "FileFunction": "SolderMask,Top",
       "FilePolarity": "Negative"
     },
     {
-      "Path": "morseboard-8088-B_Mask.gbr",
+      "Path": "mb88-testboard-B_Mask.gbr",
       "FileFunction": "SolderMask,Bot",
       "FilePolarity": "Negative"
     },
     {
-      "Path": "morseboard-8088-Edge_Cuts.gbr",
+      "Path": "mb88-testboard-Edge_Cuts.gbr",
       "FileFunction": "Profile",
       "FilePolarity": "Positive"
     }
@@ -90,24 +90,29 @@
     },
     {
       "Type": "SolderMask",
+      "Thickness": 0.01,
       "Name": "Top Solder Mask"
     },
     {
       "Type": "Copper",
+      "Thickness": 0.035,
       "Name": "F.Cu"
     },
     {
       "Type": "Dielectric",
+      "Thickness": 1.51,
       "Material": "FR4",
       "Name": "F.Cu/B.Cu",
       "Notes": "Type: dielectric layer 1 (from F.Cu to B.Cu)"
     },
     {
       "Type": "Copper",
+      "Thickness": 0.035,
       "Name": "B.Cu"
     },
     {
       "Type": "SolderMask",
+      "Thickness": 0.01,
       "Name": "Bottom Solder Mask"
     },
     {
