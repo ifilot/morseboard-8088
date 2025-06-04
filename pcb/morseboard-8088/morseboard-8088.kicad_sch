@@ -11292,16 +11292,15 @@
 		)
 		(uuid "76534376-c8da-4bee-b0ae-3ba803df187d")
 	)
-	(text "Signals are wired such that\nTxD <-> RxD\n~{CTS} <-> ~{RTS}\nsuch that no null-modem cable\nis needed."
+	(text "08: ~{CTS}\n03: TxD\n07: ~{RTS}\n02: RxD"
 		(exclude_from_sim no)
-		(at 119.888 257.302 0)
+		(at 146.558 217.17 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
 		)
-		(uuid "80adcb95-729e-4154-b6b5-a301003259d7")
+		(uuid "b286d623-81d0-4b59-8407-2dd357bf82d5")
 	)
 	(junction
 		(at 205.74 200.66)
