@@ -11292,13 +11292,14 @@
 		)
 		(uuid "76534376-c8da-4bee-b0ae-3ba803df187d")
 	)
-	(text "08: ~{CTS}\n03: TxD\n07: ~{RTS}\n02: RxD"
+	(text "External hook-up:\n08: ~{CTS}\n03: TxD\n07: ~{RTS}\n02: RxD"
 		(exclude_from_sim no)
-		(at 146.558 217.17 0)
+		(at 142.494 217.17 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
+			(justify left)
 		)
 		(uuid "b286d623-81d0-4b59-8407-2dd357bf82d5")
 	)

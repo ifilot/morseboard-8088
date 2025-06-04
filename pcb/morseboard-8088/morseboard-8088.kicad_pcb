@@ -6058,7 +6058,7 @@
 			(net 1 "VCC")
 			(pinfunction "1")
 			(pintype "passive")
-			(uuid "e1e9cf2e-31d1-490a-9ef1-2399f22b8c2b")
+			(uuid "18c8fd75-0f0b-49bc-8d39-d6997ab42f36")
 		)
 		(pad "2" thru_hole circle
 			(at 0 4.5 90)
@@ -6080,7 +6080,7 @@
 			(net 4 "NMI")
 			(pinfunction "2")
 			(pintype "passive")
-			(uuid "0f11c717-ed35-45b4-b113-b5da8fbe5c77")
+			(uuid "3fa08951-85ce-4185-928b-86438f71aa2a")
 		)
 		(embedded_fonts no)
 		(model "${KICAD9_3DMODEL_DIR}/Button_Switch_THT.3dshapes/SW_PUSH_6mm.step"
@@ -14355,7 +14355,7 @@
 			(net 2 "GND")
 			(pinfunction "1")
 			(pintype "passive")
-			(uuid "a357d92e-68fe-434c-af11-59598728c752")
+			(uuid "e86b9082-72ce-49e2-919d-230c83b22d0d")
 		)
 		(pad "2" thru_hole circle
 			(at 0 4.5 90)
@@ -14377,7 +14377,7 @@
 			(net 80 "~{RES}")
 			(pinfunction "2")
 			(pintype "passive")
-			(uuid "f14b2aa2-a11b-412b-b59f-93c7c9fda29d")
+			(uuid "a14a04dd-d2f8-413d-bc05-a6f89fcf953b")
 		)
 		(embedded_fonts no)
 		(model "${KICAD9_3DMODEL_DIR}/Button_Switch_THT.3dshapes/SW_PUSH_6mm.step"
@@ -17659,7 +17659,7 @@
 			(net 108 "unconnected-(J2-PAD-Pad0)")
 			(pinfunction "PAD")
 			(pintype "passive+no_connect")
-			(uuid "875d4d18-a2d1-44c5-b91a-6a4474b304a6")
+			(uuid "33568e06-537c-403a-9549-b04a3f5fd634")
 		)
 		(pad "1" thru_hole rect
 			(at 0 0 180)
@@ -21267,7 +21267,7 @@
 			(net 14 "Net-(J1-Shield)")
 			(pinfunction "Shield")
 			(pintype "passive")
-			(uuid "29e9c23e-6d0a-4e42-935c-087cb6f2c073")
+			(uuid "3ce3bc1a-3626-4729-aefe-fd6969001de9")
 		)
 		(embedded_fonts no)
 		(model "${KICAD9_3DMODEL_DIR}/Connector_USB.3dshapes/USB_B_OST_USB-B1HSxx_Horizontal.step"
@@ -27517,7 +27517,7 @@
 	)
 	(gr_rect
 		(start 213.106 41.148)
-		(end 214.376 42.672)
+		(end 214.376 45.847)
 		(stroke
 			(width 0.1)
 			(type solid)
@@ -27537,37 +27537,37 @@
 		(uuid "36e90880-b525-47ee-a6a6-a2915428683e")
 	)
 	(gr_rect
-		(start 229.362 46.609)
-		(end 230.632 48.133)
+		(start 220.98 44.0055)
+		(end 222.25 48.7045)
 		(stroke
 			(width 0.1)
 			(type solid)
 		)
 		(fill yes)
 		(layer "F.SilkS")
-		(uuid "5d3a9d01-5b3a-4de6-b450-59125ce1eb6a")
+		(uuid "42f04cc3-610a-4b7e-a5a0-33f19748eb5b")
 	)
 	(gr_rect
-		(start 237.49 46.609)
-		(end 238.76 48.133)
+		(start 229.235 44.0055)
+		(end 230.505 48.7045)
 		(stroke
 			(width 0.1)
 			(type solid)
 		)
 		(fill yes)
 		(layer "F.SilkS")
-		(uuid "b6653c8a-deea-47b8-bf80-490b1ebcf599")
+		(uuid "689f44b6-e345-4007-a441-43d22da56296")
 	)
 	(gr_rect
-		(start 221.234 41.148)
-		(end 222.504 42.672)
+		(start 237.49 41.0695)
+		(end 238.76 45.7685)
 		(stroke
 			(width 0.1)
 			(type solid)
 		)
 		(fill yes)
 		(layer "F.SilkS")
-		(uuid "f48e5d0c-b49e-431b-aa42-6455d62972c2")
+		(uuid "e2ce076e-0740-41df-bf90-bdaa7975f7ba")
 	)
 	(gr_line
 		(start 80.645 130.715)
@@ -27704,8 +27704,8 @@
 			(justify bottom)
 		)
 	)
-	(gr_text "Set regular or null-modem \nserial configuration. Squares \nindicate regular configuration."
-		(at 212.217 56.007 0)
+	(gr_text "Set jumper to rectangular boxes \nfor regular serial cable."
+		(at 210.82 53.975 0)
 		(layer "F.SilkS")
 		(uuid "36705494-e947-43e8-9748-ac486c81716c")
 		(effects
