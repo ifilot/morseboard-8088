@@ -11,7 +11,7 @@
     (via_costs 50)
     (plane_via_costs 5)
     (start_ripup_costs 100)
-    (start_pass_no 13824)
+    (start_pass_no 18717)
     (layer_rule F.Cu
       (active on)
       (preferred_direction horizontal)
@@ -76,11 +76,11 @@
     "unconnected-(U7-Pad10)" LATCH "unconnected-(U7-Pad13)" ~{RAMCS} M ~{A19} "unconnected-(X1-NC-Pad1)" "unconnected-(SW1-C-Pad3)"
     "Net-(U13-VS-)" "Net-(U13-C2-)" "Net-(U13-C2+)" "Net-(U13-C1+)" "Net-(U13-C1-)" "Net-(D1-K)" "Net-(D2-K)" "Net-(D3-K)"
     "Net-(D4-K)" "Net-(D5-K)" "Net-(D6-K)" "Net-(D7-K)" "Net-(D8-K)" UART8 UART2 "unconnected-(J2-Pad6)"
-    UART3 "unconnected-(J2-Pad1)" "unconnected-(J2-Pad4)" "unconnected-(J2-PAD-Pad0)" "unconnected-(J2-Pad9)" UART7 "unconnected-(J2-PAD-Pad0)_1" "Net-(RN1-R6)"
-    "Net-(RN1-R5)" "Net-(RN1-R3)" "Net-(RN1-R4)" "Net-(RN1-R7)" "Net-(RN1-R2)" "Net-(RN1-R8)" "Net-(RN1-R1)" INTR
-    ~{INTA} ~{IO01} "Net-(U11-RCLK)" "unconnected-(U11-~{RXRDY}-Pad32)" ~{RTS} ~{CTS} "unconnected-(U11-XOUT-Pad19)" TxD
-    "unconnected-(U11-NC-Pad23)" "unconnected-(U11-~{DSR}-Pad41)" "unconnected-(U11-NC-Pad12)" "unconnected-(U11-NC-Pad34)" RxD "unconnected-(U11-~{DCD}-Pad42)" "unconnected-(U11-~{OUT2}-Pad35)" "unconnected-(U11-~{RI}-Pad43)"
-    "unconnected-(U11-~{TXRDY}-Pad27)" "unconnected-(U11-~{DTR}-Pad37)" "unconnected-(U11-~{OUT1}-Pad38)" "unconnected-(U11-DDIS-Pad26)" R1IN T2OUT R2IN T1OUT
+    UART3 "unconnected-(J2-Pad1)" "unconnected-(J2-Pad4)" "unconnected-(J2-PAD-Pad0)" "unconnected-(J2-Pad9)" UART7 "Net-(RN1-R6)" "Net-(RN1-R5)"
+    "Net-(RN1-R3)" "Net-(RN1-R4)" "Net-(RN1-R7)" "Net-(RN1-R2)" "Net-(RN1-R8)" "Net-(RN1-R1)" INTR ~{INTA}
+    ~{IO01} "Net-(U11-RCLK)" "unconnected-(U11-~{RXRDY}-Pad32)" ~{RTS} ~{CTS} "unconnected-(U11-XOUT-Pad19)" TxD "unconnected-(U11-NC-Pad23)"
+    "unconnected-(U11-~{DSR}-Pad41)" "unconnected-(U11-NC-Pad12)" "unconnected-(U11-NC-Pad34)" RxD "unconnected-(U11-~{DCD}-Pad42)" "unconnected-(U11-~{OUT2}-Pad35)" "unconnected-(U11-~{RI}-Pad43)" "unconnected-(U11-~{TXRDY}-Pad27)"
+    "unconnected-(U11-~{DTR}-Pad37)" "unconnected-(U11-~{OUT1}-Pad38)" "unconnected-(U11-DDIS-Pad26)" R1IN T2OUT R2IN T1OUT
     (clearance_class "kicad_default")
     (via_rule kicad_default)
     (rule
