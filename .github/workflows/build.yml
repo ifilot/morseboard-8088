@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build-tinyrom:
+  build-testrom:
     runs-on: ubuntu-latest
     permissions:
       contents: write
