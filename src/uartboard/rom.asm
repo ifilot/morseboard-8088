@@ -44,33 +44,26 @@ mov sp, 0xFFFE
 ; initialize uart
 call init_uart
 
+; test
+mov al, 0xAA
+call puthex
+call newline
+
 ; set-up ISR
 mov ax,0
 mov es, ax
-mov word [es:0x60 * 4], isr_alt     ; write offset
-mov ax, 0x8000                      ; hardcode segment
+mov ax, isr_uart
+mov word [es:0x60 * 4], ax          ; write offset
+mov ax, 0x8000                      ; write segment
 mov [es:0x60 * 4 + 2], ax
 
 mov ax, [es:0x60 * 4]
-out 0x00, al
-call delay
-mov al,ah
-out 0x00, al
-call delay
+call puthex16
+call newline
 
 mov ax, [es:0x60 * 4 + 2]
-out 0x00, al
-call delay
-mov al,ah
-out 0x00, al
-call delay
-
-mov ax, isr_alt
-out 0x00, al       ; offset low
-call delay
-mov al, ah         ; offset high
-out 0x00, al
-call delay
+call puthex16
+call newline
 
 ; Enable interrupts
 sti
@@ -78,6 +71,8 @@ sti
 ; send "ready" char
 mov al, '@'
 call putch
+
+int 0x60
 
 loop:
     mov al, 0xAA
@@ -154,12 +149,13 @@ init_uart:
     ret
 
 ; send a single character over the uart, character to be
-; sent is set in AL; garbles AH
+; sent is set in AL; conserves AH
 putch:
-    mov ah,al           ; store AL temporarily in AH
+    push ax
     call wait_tx_ready
     call wait_cts
     mov al,ah           ; retrieve AL from AH
+    pop ax
     out UART_THR, al
     ret
 
@@ -187,17 +183,13 @@ isr_uart:
     out 0x00, al
 
     ; Check why we got the interrupt (not strictly required for simple echo)
-    ;in al, UART_IIR
-    ;and al, 0x06       ; Bits 1-2 hold reason
-    ;cmp al, 0x04       ; 0b100 = Received Data Available
-    ;jne .done
+    in al, UART_IIR
+    and al, 0x06       ; Bits 1-2 hold reason
+    cmp al, 0x04       ; 0b100 = Received Data Available
+    jne .done
 
     ; Read received char
     in al, UART_RBR
-
-    ; check whether this is reached or not
-    mov al,0x02
-    out 0x00, al
 
     ; Echo it back
     call putch
@@ -208,11 +200,53 @@ isr_uart:
     sti
     iret
 
-isr_alt:
-    mov al, 0xF0
-    out 0x00, al      ; pulse debug line
-    call delay
-    iret
+; Print 16-bit word in AX as 4 hex digits
+puthex16:
+    push ax           ; Save AX
+
+    mov al, ah        ; Output high byte
+    call puthex       ; Print high byte as hex
+
+    pop ax
+    call puthex       ; Print low byte as hex
+
+    ret
+
+; write hex value
+puthex:
+    push ax           ; Save AX since we will be modifying it
+
+    mov ah, al        ; Copy value to AH so we can extract nibbles
+
+    shr al, 4         ; Get high nibble into AL
+    call hexnibble    ; Convert to ASCII
+    call putch        ; Print high nibble
+
+    mov al, ah        ; Restore original value into AL
+    and al, 0Fh       ; Mask out high nibble, keep low nibble
+    call hexnibble    ; Convert to ASCII
+    call putch        ; Print low nibble
+
+    pop ax            ; Restore AX
+    ret
+
+; print newline character
+newline:
+    mov al, CR
+    call putch
+    mov al, LF
+    call putch
+    ret
+
+; Converts nibble in AL (0-15) to ASCII ('0'-'9', 'A'-'F')
+hexnibble:
+    cmp al, 9
+    jbe hex_is_digit
+    add al, 7         ; Adjust for 'A'-'F'
+
+hex_is_digit:
+    add al, '0'       ; Convert to ASCII
+    ret
 
 ; === Pad to reset vector at 0xFFFF0
 times 0xFFFF0 - 0x80000 - ($ - $$) db 0xFF
