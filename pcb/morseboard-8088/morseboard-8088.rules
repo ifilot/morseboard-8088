@@ -11,7 +11,7 @@
     (via_costs 50)
     (plane_via_costs 5)
     (start_ripup_costs 100)
-    (start_pass_no 18717)
+    (start_pass_no 17000)
     (layer_rule F.Cu
       (active on)
       (preferred_direction horizontal)
@@ -67,20 +67,20 @@
     L4 L5 L6 L7 "Net-(D9-K)" "Net-(J1-Shield)" "unconnected-(J1-D--Pad2)" VIN
     "unconnected-(J1-D+-Pad3)" AD3 AD1 ~{WR} A11 ALE AD6 CLK
     AD5 DEN "Net-(U13-VS+)" A12 AD0 AD4 AD17 A10
-    AD19 A14 ~{M} A15 AD2 "unconnected-(U1-HLDA-Pad30)" AD7 A9
-    AD16 "unconnected-(U1-~{SSO}-Pad34)" ~{RD} AD18 DT A13 A8 A1
-    A5 A3 A2 A0 A7 A4 A6 A18
-    A16 A19 "unconnected-(U3-Q5-Pad14)" "unconnected-(U3-Q6-Pad13)" A17 "unconnected-(U3-Q4-Pad15)" "unconnected-(U3-Q7-Pad12)" D3
-    D4 D7 D5 D2 D6 D0 D1 ~{ROMCS}
-    "unconnected-(U6-~{Y2}-Pad13)" "unconnected-(U6-~{Y4}-Pad11)" "unconnected-(U6-~{Y6}-Pad9)" "unconnected-(U6-~{Y5}-Pad10)" "unconnected-(U6-~{Y3}-Pad12)" "unconnected-(U6-~{Y7}-Pad7)" ~{IO00} ~{RES}
-    "unconnected-(U7-Pad10)" LATCH "unconnected-(U7-Pad13)" ~{RAMCS} M ~{A19} "unconnected-(X1-NC-Pad1)" "unconnected-(SW1-C-Pad3)"
-    "Net-(U13-VS-)" "Net-(U13-C2-)" "Net-(U13-C2+)" "Net-(U13-C1+)" "Net-(U13-C1-)" "Net-(D1-K)" "Net-(D2-K)" "Net-(D3-K)"
-    "Net-(D4-K)" "Net-(D5-K)" "Net-(D6-K)" "Net-(D7-K)" "Net-(D8-K)" UART8 UART2 "unconnected-(J2-Pad6)"
-    UART3 "unconnected-(J2-Pad1)" "unconnected-(J2-Pad4)" "unconnected-(J2-PAD-Pad0)" "unconnected-(J2-Pad9)" UART7 "Net-(RN1-R6)" "Net-(RN1-R5)"
-    "Net-(RN1-R3)" "Net-(RN1-R4)" "Net-(RN1-R7)" "Net-(RN1-R2)" "Net-(RN1-R8)" "Net-(RN1-R1)" INTR ~{INTA}
-    ~{IO01} "Net-(U11-RCLK)" "unconnected-(U11-~{RXRDY}-Pad32)" ~{RTS} ~{CTS} "unconnected-(U11-XOUT-Pad19)" TxD "unconnected-(U11-NC-Pad23)"
-    "unconnected-(U11-~{DSR}-Pad41)" "unconnected-(U11-NC-Pad12)" "unconnected-(U11-NC-Pad34)" RxD "unconnected-(U11-~{DCD}-Pad42)" "unconnected-(U11-~{OUT2}-Pad35)" "unconnected-(U11-~{RI}-Pad43)" "unconnected-(U11-~{TXRDY}-Pad27)"
-    "unconnected-(U11-~{DTR}-Pad37)" "unconnected-(U11-~{OUT1}-Pad38)" "unconnected-(U11-DDIS-Pad26)" R1IN T2OUT R2IN T1OUT
+    AD19 A14 A15 AD2 "unconnected-(U1-HLDA-Pad30)" AD7 A9 AD16
+    "unconnected-(U1-~{SSO}-Pad34)" ~{RD} AD18 DT A13 A8 A1 A5
+    A3 A2 A0 A7 A4 A6 A18 A16
+    A19 "unconnected-(U3-Q5-Pad14)" "unconnected-(U3-Q6-Pad13)" A17 "unconnected-(U3-Q4-Pad15)" "unconnected-(U3-Q7-Pad12)" D3 D4
+    D7 D5 D2 D6 D0 D1 ~{ROMCS} "unconnected-(U6-~{Y2}-Pad13)"
+    "unconnected-(U6-~{Y4}-Pad11)" "unconnected-(U6-~{Y6}-Pad9)" "unconnected-(U6-~{Y5}-Pad10)" "unconnected-(U6-~{Y3}-Pad12)" "unconnected-(U6-~{Y7}-Pad7)" ~{IO00} ~{RES} "unconnected-(U7-Pad10)"
+    LATCH "unconnected-(U7-Pad13)" ~{RAMCS} ~{A19} "unconnected-(X1-NC-Pad1)" "unconnected-(SW1-C-Pad3)" "Net-(U13-VS-)" "Net-(U13-C2-)"
+    "Net-(U13-C2+)" "Net-(U13-C1+)" "Net-(U13-C1-)" "Net-(D1-K)" "Net-(D2-K)" "Net-(D3-K)" "Net-(D4-K)" "Net-(D5-K)"
+    "Net-(D6-K)" "Net-(D7-K)" "Net-(D8-K)" UART8 UART2 "unconnected-(J2-Pad6)" UART3 "unconnected-(J2-Pad1)"
+    "unconnected-(J2-Pad4)" "unconnected-(J2-PAD-Pad0)" "unconnected-(J2-Pad9)" UART7 "Net-(RN1-R6)" "Net-(RN1-R5)" "Net-(RN1-R3)" "Net-(RN1-R4)"
+    "Net-(RN1-R7)" "Net-(RN1-R2)" "Net-(RN1-R8)" "Net-(RN1-R1)" INTR ~{INTA} ~{IO01} "Net-(U11-RCLK)"
+    "unconnected-(U11-~{RXRDY}-Pad32)" ~{RTS} ~{CTS} "unconnected-(U11-XOUT-Pad19)" TxD "unconnected-(U11-NC-Pad23)" "unconnected-(U11-~{DSR}-Pad41)" "unconnected-(U11-NC-Pad12)"
+    "unconnected-(U11-NC-Pad34)" RxD "unconnected-(U11-~{DCD}-Pad42)" "unconnected-(U11-~{OUT2}-Pad35)" "unconnected-(U11-~{RI}-Pad43)" "unconnected-(U11-~{TXRDY}-Pad27)" "unconnected-(U11-~{DTR}-Pad37)" "unconnected-(U11-~{OUT1}-Pad38)"
+    "unconnected-(U11-DDIS-Pad26)" "unconnected-(J2-PAD-Pad0)_1" IO{slash}~{M} ~{IO}{slash}M
     (clearance_class "kicad_default")
     (via_rule kicad_default)
     (rule

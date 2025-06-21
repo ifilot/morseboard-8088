@@ -21,6 +21,8 @@ boot:
     call putch
 
     ; go to loop routine
+    mov al, 0xAA
+    out LEDBASE, al
     jmp loop
 
 loop:
