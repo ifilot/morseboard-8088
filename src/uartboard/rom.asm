@@ -20,11 +20,11 @@ boot:
     mov al, '@'
     call putch
 
-    ; go to loop routine
-    mov al, 0xAA
-    out LEDBASE, al
     jmp loop
 
+;------------------------------------------------------------------------------
+; put system in 'echo' routine; simply return any character send over the UART
+;------------------------------------------------------------------------------
 loop:
     mov al, [KEYBUFRPTR]
     mov ah, [KEYBUFLPTR]
@@ -38,8 +38,6 @@ loop:
     inc bl
     mov [KEYBUFLPTR], bl
     call putch
-    mov al, bl
-    out LEDBASE, al
     
     jmp loop
 
@@ -59,9 +57,11 @@ init:
     mov ds, ax          ; reset DS
     ret
 
+;------------------------------------------------------------------------------
+; small delay function
 ;
-; 500 ms delay function for the NEC V20, about 
-;
+; garbles: CX, DX
+;------------------------------------------------------------------------------
 delay:
     mov cx, 200       ; Outer loop × inner loop = total delay
 .outer_loop:
@@ -140,15 +140,19 @@ putch:
 
 ;------------------------------------------------------------------------------
 ; wait for TX to be ready
+;
+; Garbles: AL
 ;------------------------------------------------------------------------------
 wait_tx_ready:
-    in al, UART_LSR     ; overwrites AL!
+    in al, UART_LSR
     test al, LSR_THRE
     jz wait_tx_ready
     ret
 
 ;------------------------------------------------------------------------------
 ; wait for CTS to go low
+;
+; Garbles: AL
 ;------------------------------------------------------------------------------
 wait_cts:
     in al, UART_MSR     ; overwrites AL!
@@ -247,7 +251,6 @@ hex_is_digit:
 ;------------------------------------------------------------------------------
 ; PADDING AND START VECTOR
 ;------------------------------------------------------------------------------
-times 0xFFFF0 - 0x80000 - ($ - $$) db 0xFF
-jmp 0x8000:0x0000                           ; this jump hits address 0x80000
-times 0x80000 - ($ - $$) db 0xFF
-
+    times 0xFFFF0 - 0x80000 - ($ - $$) db 0xFF
+    jmp 0x8000:0x0000                           ; this jump hits address 0x80000
+    times 0x80000 - ($ - $$) db 0xFF
