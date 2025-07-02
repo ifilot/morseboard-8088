@@ -13797,7 +13797,7 @@
 		)
 		(property "Value" "RESET"
 			(at 3.75 6.7 0)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "5e99465e-d7ee-46b3-bc5b-b95bdc9f9085")
 			(effects
 				(font
@@ -14966,7 +14966,7 @@
 		(descr "9-pin Resistor SIP pack")
 		(tags "R")
 		(property "Reference" "RN2"
-			(at 22.86 -1.27 0)
+			(at 22.86 0 0)
 			(layer "F.SilkS")
 			(uuid "e08d6d1e-f393-4dca-a627-2f73416a6440")
 			(effects
@@ -26642,7 +26642,7 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "rev2"
+	(gr_text "rev3"
 		(at 99.484423 75.184 0)
 		(layer "F.SilkS")
 		(uuid "880bbb93-4224-43b4-b96b-c32670ce5d57")

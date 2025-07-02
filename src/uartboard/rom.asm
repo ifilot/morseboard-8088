@@ -15,31 +15,64 @@ boot:
 
     ; initialize system
     call init
-
-    ; show '@'
-    mov al, '@'
-    call putch
+    call show_menu
 
     jmp loop
 
+hw:
+    db "Hello World!",0
+
 ;------------------------------------------------------------------------------
-; put system in 'echo' routine; simply return any character send over the UART
+; Main loop with menu and input handling
 ;------------------------------------------------------------------------------
 loop:
+    call show_menu         ; Show the menu once
+.wait_key:
     mov al, [KEYBUFRPTR]
     mov ah, [KEYBUFLPTR]
     cmp ah, al
-    je loop
+    je .wait_key           ; Wait for key
+
     mov si, KEYBUF
     xor bx, bx
     mov bl, [KEYBUFLPTR]
     add si, bx
     mov al, [si]
     inc bl
-    mov [KEYBUFLPTR], bl
-    call putch
-    
+    mov [KEYBUFLPTR], bl   ; Update buffer pointer
+
+    ; Check input
+    cmp al, '1'
+    je do_strobe
+
+    ; Default: echo
+    jmp .wait_key
+
+;------------------------------------------------------------------------------
+; Perform strobe
+;------------------------------------------------------------------------------
+do_strobe:
+    call strobe
     jmp loop
+
+;------------------------------------------------------------------------------
+; put system in 'echo' routine; simply return any character send over the UART
+;------------------------------------------------------------------------------
+show_menu:
+    mov ax, 0x8000
+    mov ds, ax
+    mov dx,hw
+    mov dx, menu_text
+    call puts
+    xor ax, ax
+    mov ds, ax
+    ret
+
+menu_text: 
+    db $0D, $0A
+    db 'Menu:', $0D, $0A
+    db '1. Strobe LEDs', $0D, $0A
+    db 'Select option: ', 0
 
 ;------------------------------------------------------------------------------
 ; Initialize system
@@ -136,6 +169,26 @@ putch:
     mov al,ah           ; retrieve AL from AH
     pop ax
     out UART_THR, al
+    ret
+
+;------------------------------------------------------------------------------
+; puts - print a null-terminated string from address in DX
+;------------------------------------------------------------------------------
+puts:
+    push ax
+    push dx
+    push si
+    mov si, dx         ; move pointer to SI
+.next_char:
+    lodsb              ; load byte at [SI] into AL, increment SI
+    cmp al, 0
+    je .done
+    call putch
+    jmp .next_char
+.done:
+    pop si
+    pop dx
+    pop ax
     ret
 
 ;------------------------------------------------------------------------------
@@ -246,6 +299,20 @@ hexnibble:
 ;------------------------------------------------------------------------------
 hex_is_digit:
     add al, '0'       ; Convert to ASCII
+    ret
+
+;------------------------------------------------------------------------------
+; strobe routine: sequentially flashes LEDs
+;------------------------------------------------------------------------------
+strobe:
+    mov cx, 8          ; 8 LEDs / 8 steps
+    mov al, 00000001b  ; Start with the first LED on (bit 0)
+
+strobe_loop:
+    out 0x00, al       ; Output to the LED port
+    call delay         ; Call your delay function
+    shl al, 1          ; Shift left to move to next LED
+    loop strobe_loop   ; Repeat 8 times
     ret
 
 ;------------------------------------------------------------------------------
