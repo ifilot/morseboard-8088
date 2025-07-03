@@ -15,7 +15,6 @@ boot:
 
     ; initialize system
     call init
-    call show_menu
 
     jmp loop
 
@@ -45,6 +44,9 @@ loop:
     cmp al, '1'
     je do_strobe
 
+    cmp al, '2'
+    je do_pingpong
+
     ; Default: echo
     jmp .wait_key
 
@@ -53,6 +55,13 @@ loop:
 ;------------------------------------------------------------------------------
 do_strobe:
     call strobe
+    jmp loop
+
+;------------------------------------------------------------------------------
+; Perform pingpong
+;------------------------------------------------------------------------------
+do_pingpong:
+    call pingpong
     jmp loop
 
 ;------------------------------------------------------------------------------
@@ -72,6 +81,7 @@ menu_text:
     db $0D, $0A
     db 'Menu:', $0D, $0A
     db '1. Strobe LEDs', $0D, $0A
+    db '2. Ping-pong LEDs', $0D, $0A
     db 'Select option: ', 0
 
 ;------------------------------------------------------------------------------
@@ -310,9 +320,45 @@ strobe:
 
 strobe_loop:
     out 0x00, al       ; Output to the LED port
-    call delay         ; Call your delay function
+    push cx
+    call delay         ; Call your delay function, garbles cx
+    pop cx
     shl al, 1          ; Shift left to move to next LED
     loop strobe_loop   ; Repeat 8 times
+    ret
+
+;------------------------------------------------------------------------------
+; pingpong routine: LED moves left to right, then right to left
+;------------------------------------------------------------------------------
+pingpong:
+    mov al, 00000001b     ; Start with bit 0 on
+    mov bl, 1             ; Direction: 1 = left, 0 = right
+    mov cx, 15            ; 7 left + 1 mid + 7 right = 15 steps
+
+pingpong_loop:
+    out 0x00, al
+    push cx
+    call delay
+    pop cx
+
+    cmp bl, 1
+    je .go_left
+
+.go_right:
+    shr al, 1
+    cmp al, 00000001b     ; If at far right, switch to left
+    jne .continue
+    mov bl, 1
+    jmp .continue
+
+.go_left:
+    shl al, 1
+    cmp al, 10000000b     ; If at far left, switch to right
+    jne .continue
+    mov bl, 0
+
+.continue:
+    loop pingpong_loop
     ret
 
 ;------------------------------------------------------------------------------
