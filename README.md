@@ -1,27 +1,64 @@
-# MorseBoard 8088
+## MorseBoard 8088
 
-Single board computer revolving around the Intel 8088 microprocessor.
+**A single-board computer built around the Intel 8088 microprocessor.**
 
-# Board lay-out
-The 20-pin address bus of the 8088 allows for 1MiB of address space which is
-allocated by a lower 512 KiB segment of RAM and an upper 512 KiB segment of ROM.
-Multiplexing of the shared address / data pins is handled by 74HCT573 chips.
-Serial communication is done using a TL16C550 chip and a MAX232 chip. Using a
-74HCT273, 8 LEDs are hooked up as the output of I/O port 0x00. A 7.3728 MHz CAN
-oscillator is used both for driving the 8088 as well as for the serial
-communication. Note that because of this choice, one needs to use 8088-2 type of
-CPUs which allow for this higher clock frequency.
+The name **MorseBoard** is a tribute to [Stephen P.
+Morse](https://en.wikipedia.org/wiki/Stephen_P._Morse), the lead architect of
+the Intel 8086 microprocessor — the foundational design on which the 8088 is
+based. His work played a pivotal role in shaping early x86 computing.
 
-# Design files
-The design files for the board are found in `pcb/morseboard-8088`. Source is
-found under `src/uartboard`. Assembling is best done using the
-[nasm](https://www.nasm.us/) assembler which is freely available via the package
-manager under e.g. Linux Ubuntu. A `Makefile` is provided to assist in this
-process. To flash the ROM, it is recommended to use the PICO-SST39SF0x0 programmer
-as found [in this repository](https://github.com/ifilot/pico-sst39sf0x0-programmer).
+## Board Layout
 
-# Test board
-Besides the "full" board hosting a UART chip, there is also a test board available
-under `pcb/cpu-testboard` designed for easy testing of a 8088 processor, especially
-since these processor are no longer in production and procurement of these CPUs
-from the second hand market does not always yield working chips.
+The 8088’s 20-bit address bus allows access to **1 MiB** of addressable memory,
+divided into:
+
+- **512 KiB of RAM** in the lower memory segment  
+- **512 KiB of ROM** in the upper memory segment  
+
+Address/data multiplexing is handled using **74HCT573 latches**.  
+Serial communication is enabled via a **TL16C550 UART** and a **MAX232** level
+shifter.
+
+Eight LEDs are connected to **I/O port `0x00`** using a **74HCT273 register**,
+providing simple visual output.
+
+A **7.3728 MHz CAN oscillator** is used to drive both the 8088 and the serial
+interface. Because of this frequency, you must use the **8088-2** variant, which
+supports higher clock rates.
+
+## Design Files
+
+- **PCB layout**: `pcb/morseboard-8088`  
+- **Firmware source**: `src/uartboard`  
+
+Assembly is done using the [NASM assembler](https://www.nasm.us/), available via
+common Linux package managers (e.g., Ubuntu). A `Makefile` is provided for
+convenience.
+
+To flash the ROM, the recommended tool is the [PICO-SST39SF0x0
+programmer](https://github.com/ifilot/pico-sst39sf0x0-programmer).
+
+## Test Board
+
+In addition to the full-featured board with UART support, a **CPU test board**
+is available under `pcb/cpu-testboard`. This board is designed to validate 8088
+chips — particularly useful given the unreliability of some second-hand CPUs,
+since they are no longer in production.
+
+## License
+
+### Hardware
+
+The hardware design files for the MorseBoard 8088 are licensed under the  
+**CERN Open Hardware License v2 - Strongly Reciprocal (CERN-OHL-S-2.0)**.  
+You are free to use, modify, and distribute the hardware under the terms of this
+license.  
+More info: [CERN-OHL-S-2.0](https://ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2)
+
+### Software
+
+The firmware and software source code is licensed under the  
+**GNU General Public License v3.0 (GPLv3)**.  
+You are free to use, share, and modify the code as long as derivative works
+remain under the same license.  
+More info: [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.html)

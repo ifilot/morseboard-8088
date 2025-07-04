@@ -1,5 +1,9 @@
-bits 16
-org 0x80000
+;------------------------------------------------------------------------------
+; MORSEBOARD 8088 ROM
+;------------------------------------------------------------------------------
+
+bits 16             ; assemble for 8086/8088
+org 0x80000         ; upper 512 KiB (ROM)
 
 ; include constants for UART, characters, etc.
 %include "constants.inc"
@@ -25,47 +29,44 @@ hw:
 ; Main loop with menu and input handling
 ;------------------------------------------------------------------------------
 loop:
-    call show_menu         ; Show the menu once
+    call show_menu
 .wait_key:
     mov al, [KEYBUFRPTR]
     mov ah, [KEYBUFLPTR]
-    cmp ah, al
-    je .wait_key           ; Wait for key
+    cmp ah, al              ; check if there are any new keypresses in buffer
+    je .wait_key            ; if not, check again
 
-    mov si, KEYBUF
+    mov si, KEYBUF          ; load keybuffer location
     xor bx, bx
     mov bl, [KEYBUFLPTR]
-    add si, bx
-    mov al, [si]
+    add si, bx              ; set pointer
+    mov al, [si]            ; read from pointer
     inc bl
-    mov [KEYBUFLPTR], bl   ; Update buffer pointer
+    mov [KEYBUFLPTR], bl    ; update keybuffer
 
     ; Check input
     cmp al, '1'
     je do_strobe
-
     cmp al, '2'
     je do_pingpong
-
-    ; Default: echo
-    jmp .wait_key
+    jmp .wait_key           ; next key
 
 ;------------------------------------------------------------------------------
-; Perform strobe
+; Call to 'strobe' routine
 ;------------------------------------------------------------------------------
 do_strobe:
     call strobe
     jmp loop
 
 ;------------------------------------------------------------------------------
-; Perform pingpong
+; Call to ping-pong routine
 ;------------------------------------------------------------------------------
 do_pingpong:
     call pingpong
     jmp loop
 
 ;------------------------------------------------------------------------------
-; put system in 'echo' routine; simply return any character send over the UART
+; Show selection menu to the user
 ;------------------------------------------------------------------------------
 show_menu:
     mov ax, 0x8000
@@ -103,7 +104,7 @@ init:
 ;------------------------------------------------------------------------------
 ; small delay function
 ;
-; garbles: CX, DX
+; GARBLES: CX, DX
 ;------------------------------------------------------------------------------
 delay:
     mov cx, 200       ; Outer loop × inner loop = total delay
@@ -121,6 +122,8 @@ delay:
 
 ;------------------------------------------------------------------------------
 ; initialize the UART
+;
+; GARBLES: AX
 ;------------------------------------------------------------------------------
 init_uart:
     ; Enable DLAB to access divisor registers
@@ -158,6 +161,8 @@ init_uart:
 
 ;------------------------------------------------------------------------------
 ; Initialize the interrupt vector table, needed to receive chars over UART
+;
+; GARBLESS ES, AX
 ;------------------------------------------------------------------------------
 init_ivt:
     mov ax,0
@@ -169,8 +174,10 @@ init_ivt:
     ret
 
 ;------------------------------------------------------------------------------
-; send a single character over the uart, character to be
+; PUTCH ROUTINE - send a single character over the uart, character to be
 ; sent is set in AL; conserves AH
+;
+; GARBLES: AL
 ;------------------------------------------------------------------------------
 putch:
     push ax
@@ -182,7 +189,10 @@ putch:
     ret
 
 ;------------------------------------------------------------------------------
-; puts - print a null-terminated string from address in DX
+; PUTS ROUTINE - print a null-terminated string from address in DX
+; take care that DS is set appropriately
+;
+; GARBLES: nothing
 ;------------------------------------------------------------------------------
 puts:
     push ax
@@ -202,7 +212,7 @@ puts:
     ret
 
 ;------------------------------------------------------------------------------
-; wait for TX to be ready
+; WAIT_TX_READY ROUTINE - wait for TX to be ready before sending character
 ;
 ; Garbles: AL
 ;------------------------------------------------------------------------------
@@ -213,7 +223,7 @@ wait_tx_ready:
     ret
 
 ;------------------------------------------------------------------------------
-; wait for CTS to go low
+; WAIT_CTS - wait for /CTS line to go low before sending character
 ;
 ; Garbles: AL
 ;------------------------------------------------------------------------------
@@ -225,6 +235,8 @@ wait_cts:
 
 ;------------------------------------------------------------------------------
 ; interrupt service routine for the UART
+;
+; Conserves all registers
 ;------------------------------------------------------------------------------
 isr_uart:
     cli
@@ -253,7 +265,9 @@ isr_uart:
     iret
 
 ;------------------------------------------------------------------------------
-; Print 16-bit word in AX as 4 hex digits
+; PUTHEX16 ROUTINE - Print 16-bit word in AX as 4-digit hex digits
+;
+; Conserves all registers
 ;------------------------------------------------------------------------------
 puthex16:
     push ax           ; Save AX
@@ -267,7 +281,9 @@ puthex16:
     ret
 
 ;------------------------------------------------------------------------------
-; write hex value
+; PUTHEX ROUTINE: write 8-bit value in AL as 2-digit hex value
+;
+; Conserves all registers
 ;------------------------------------------------------------------------------
 puthex:
     push ax           ; Save AX since we will be modifying it
@@ -287,7 +303,9 @@ puthex:
     ret
 
 ;------------------------------------------------------------------------------
-; print newline character
+; NEWLINE ROUTINE - print newline character
+;
+; Garbles: AL
 ;------------------------------------------------------------------------------
 newline:
     mov al, CR
@@ -297,22 +315,20 @@ newline:
     ret
 
 ;------------------------------------------------------------------------------
-; Converts nibble in AL (0-15) to ASCII ('0'-'9', 'A'-'F')
+; HEXNIBBLE ROUTINE - Converts nibble in AL (0-15) to ASCII ('0'-'9', 'A'-'F')
 ;------------------------------------------------------------------------------
 hexnibble:
     cmp al, 9
     jbe hex_is_digit
     add al, 7         ; Adjust for 'A'-'F'
-
-;------------------------------------------------------------------------------
-; Check whether value in AL is a digit
-;------------------------------------------------------------------------------
-hex_is_digit:
+.hex_is_digit:
     add al, '0'       ; Convert to ASCII
     ret
 
 ;------------------------------------------------------------------------------
-; strobe routine: sequentially flashes LEDs
+; STROBE ROUTINE - sequentially turn on all the LEDs
+;
+; Garbles: AL, CX
 ;------------------------------------------------------------------------------
 strobe:
     mov cx, 8          ; 8 LEDs / 8 steps
@@ -328,7 +344,9 @@ strobe_loop:
     ret
 
 ;------------------------------------------------------------------------------
-; pingpong routine: LED moves left to right, then right to left
+; PINGPONG ROUTINE - LED moves left to right, then right to left
+;
+; Garbles: AL, BL, CX, DX
 ;------------------------------------------------------------------------------
 pingpong:
     mov al, 00000001b     ; Start with bit 0 on
@@ -363,6 +381,9 @@ pingpong_loop:
 
 ;------------------------------------------------------------------------------
 ; PADDING AND START VECTOR
+;
+; Fills unused memory space with 0xFF to ensure NOR flash ROM can be
+; flashed quickly.
 ;------------------------------------------------------------------------------
     times 0xFFFF0 - 0x80000 - ($ - $$) db 0xFF
     jmp 0x8000:0x0000                           ; this jump hits address 0x80000
