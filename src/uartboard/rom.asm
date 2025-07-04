@@ -319,7 +319,7 @@ newline:
 ;------------------------------------------------------------------------------
 hexnibble:
     cmp al, 9
-    jbe hex_is_digit
+    jbe .hex_is_digit
     add al, 7         ; Adjust for 'A'-'F'
 .hex_is_digit:
     add al, '0'       ; Convert to ASCII

@@ -38,6 +38,23 @@ convenience.
 To flash the ROM, the recommended tool is the [PICO-SST39SF0x0
 programmer](https://github.com/ifilot/pico-sst39sf0x0-programmer).
 
+## Assembly instructions
+
+To assemble the source code of the ROM, follow the instructions below. Make sure
+you have installed the proper toolchain.
+
+``` bash
+sudo apt install nasm make
+```
+
+Go to the folder and run `make`
+
+```bash
+cd src/uartboard
+make
+```
+Flash the resulting `rom.bin` onto the SST39SF040 chip.
+
 ## Test Board
 
 In addition to the full-featured board with UART support, a **CPU test board**
