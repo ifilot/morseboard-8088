@@ -11478,6 +11478,17 @@
 		)
 		(uuid "d26d985a-02b2-4665-bbf3-ef563591e0a9")
 	)
+	(text "Note: 8088 is running in\nminimal mode"
+		(exclude_from_sim no)
+		(at 14.732 125.73 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e946907a-3121-447c-b66a-e5aa33ae4e5f")
+	)
 	(junction
 		(at 29.21 256.54)
 		(diameter 0)
