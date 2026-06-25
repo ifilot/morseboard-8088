@@ -9,7 +9,7 @@ based. His work played a pivotal role in shaping early x86 computing.
 
 ## Board Layout
 
-The 8088’s 20-bit address bus allows access to **1 MiB** of addressable memory,
+The 8088's 20-bit address bus allows access to **1 MiB** of addressable memory,
 divided into:
 
 - **512 KiB of RAM** in the lower memory segment  
