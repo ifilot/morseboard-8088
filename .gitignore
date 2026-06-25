@@ -13,3 +13,4 @@ fp-info-cache
 *.wrl
 .vscode
 .venv
+**/.history/

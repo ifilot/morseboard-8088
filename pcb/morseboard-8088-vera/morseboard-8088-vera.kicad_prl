@@ -60,7 +60,7 @@
     "ssh_key": ""
   },
   "meta": {
-    "filename": "morseboard-8088.kicad_prl",
+    "filename": "morseboard-8088-vera.kicad_prl",
     "version": 5
   },
   "net_inspector_panel": {

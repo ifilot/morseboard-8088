@@ -506,7 +506,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "morseboard-8088.kicad_pro",
+    "filename": "morseboard-8088-vera.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -545,7 +545,7 @@
       "netlist": "",
       "plot": "GERBERS/",
       "pos_files": "",
-      "specctra_dsn": "morseboard-8088.dsn",
+      "specctra_dsn": "morseboard-8088-vera.dsn",
       "step": "morseboard-8088.step",
       "svg": "",
       "vrml": ""
@@ -691,18 +691,18 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "morseboard-8088.kicad_sch",
-        "name": "morseboard-8088",
+        "filename": "morseboard-8088-vera.kicad_sch",
+        "name": "morseboard-8088-vera",
         "uuid": "27cb38f9-12de-466e-a080-2dfa091752ed"
       }
     ],
-    "used_designators": "",
+    "used_designators": "J3,#PWR100,#PWR104-105",
     "variants": []
   },
   "sheets": [
     [
       "27cb38f9-12de-466e-a080-2dfa091752ed",
-      "morseboard-8088"
+      "morseboard-8088-vera"
     ]
   ],
   "text_variables": {},
