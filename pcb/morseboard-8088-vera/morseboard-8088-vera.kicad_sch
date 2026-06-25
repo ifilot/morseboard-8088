@@ -12669,6 +12669,16 @@
 		)
 		(uuid "584fd27d-ad9c-4b4d-b730-50bba7f10488")
 	)
+	(text "VERA Board"
+		(exclude_from_sim no)
+		(at 262.89 108.966 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "5c97b47b-4868-4554-aaff-be249a9f3c4c")
+	)
 	(text "Glue logic"
 		(exclude_from_sim no)
 		(at 132.842 131.318 0)
@@ -33485,6 +33495,85 @@
 				(path "/27cb38f9-12de-466e-a080-2dfa091752ed"
 					(reference "RN2")
 					(unit 4)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 336.55 139.7 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "cc765126-2f13-4dc6-912e-290ef28febfb")
+		(property "Reference" "#PWR0106"
+			(at 342.9 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 340.36 139.6999 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 336.55 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 336.55 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 336.55 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "cb574850-cc47-4324-9a2f-16b4307f66e7")
+		)
+		(instances
+			(project "morseboard-8088-vera"
+				(path "/27cb38f9-12de-466e-a080-2dfa091752ed"
+					(reference "#PWR0106")
+					(unit 1)
 				)
 			)
 		)
