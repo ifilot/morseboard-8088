@@ -76,12 +76,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        [
-          "padstack|186674999|46485001|34486e6c-93da-40d9-a22e-39ec966aa81a|00000000-0000-0000-0000-000000000000",
-          ""
-        ]
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
@@ -701,13 +696,17 @@
         "uuid": "27cb38f9-12de-466e-a080-2dfa091752ed"
       }
     ],
-    "used_designators": "#PWR106",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
     [
       "27cb38f9-12de-466e-a080-2dfa091752ed",
       "morseboard-8088-vera"
+    ],
+    [
+      "480f1686-afc1-4eff-8fbf-2046eed0f3ff",
+      "controller"
     ]
   ],
   "text_variables": {},

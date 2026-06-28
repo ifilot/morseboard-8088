@@ -11,7 +11,7 @@
     (via_costs 50)
     (plane_via_costs 5)
     (start_ripup_costs 100)
-    (start_pass_no 10839)
+    (start_pass_no 15519)
     (layer_rule F.Cu
       (active on)
       (preferred_direction horizontal)
@@ -67,20 +67,22 @@
     AD2 AD3 AD4 AD5 AD6 AD7 ALE A7
     A6 A5 A4 A3 A2 A1 A0 DT
     D7 D6 D5 D4 D3 D2 D1 D0
-    DEN "Net-(U13-VS-)" NMI ~{IO02} ~{RES} ~{WR} "unconnected-(J3-Pin_14-Pad14)" ~{RD}
-    "unconnected-(J3-Pin_23-Pad23)" "unconnected-(J3-Pin_24-Pad24)" "Net-(D5-K)" L4 A19 ~{A19} IO{slash}~{M} ~{IO}{slash}M
-    ~{ROMCS} ~{RAMCS} "Net-(D7-K)" L6 "Net-(U11-RCLK)" RxD "unconnected-(U11-NC-Pad12)" TxD
-    ~{IO01} "unconnected-(U11-XOUT-Pad19)" "unconnected-(U11-NC-Pad23)" "unconnected-(U11-DDIS-Pad26)" "unconnected-(U11-~{TXRDY}-Pad27)" "unconnected-(U11-~{RXRDY}-Pad32)" INTR "unconnected-(U11-NC-Pad34)"
-    "unconnected-(U11-~{OUT2}-Pad35)" ~{RTS} "unconnected-(U11-~{DTR}-Pad37)" "unconnected-(U11-~{OUT1}-Pad38)" ~{CTS} "unconnected-(U11-~{DSR}-Pad41)" "unconnected-(U11-~{DCD}-Pad42)" "unconnected-(U11-~{RI}-Pad43)"
-    "Net-(RN1-R8)" "Net-(RN1-R7)" "Net-(RN1-R6)" "Net-(RN1-R5)" "Net-(RN1-R4)" "Net-(RN1-R3)" "Net-(RN1-R2)" "Net-(RN1-R1)"
-    "Net-(U13-C1+)" "Net-(U13-VS+)" "Net-(U13-C1-)" "Net-(U13-C2+)" "Net-(U13-C2-)" UART8 UART7 UART3
-    UART2 "Net-(D4-K)" L3 "Net-(J1-Shield)" "Net-(D3-K)" L2 A18 A16
-    A15 A12 A10 A11 A9 A8 A13 A14
-    A17 "Net-(D8-K)" L7 ~{INTA} VIN "unconnected-(SW1-C-Pad3)" "unconnected-(U6-~{Y7}-Pad7)" "unconnected-(U6-~{Y6}-Pad9)"
-    "unconnected-(U6-~{Y5}-Pad10)" "unconnected-(U6-~{Y4}-Pad11)" "unconnected-(U6-~{Y3}-Pad12)" ~{IO00} "Net-(D1-K)" L0 AD16 AD17
-    AD18 AD19 "unconnected-(U3-Q7-Pad12)" "unconnected-(U3-Q6-Pad13)" "unconnected-(U3-Q5-Pad14)" "unconnected-(U3-Q4-Pad15)" "Net-(D2-K)" "Net-(D6-K)"
-    "unconnected-(U1-HLDA-Pad30)" "unconnected-(U1-~{SSO}-Pad34)" L1 LATCH L5 "unconnected-(U7-Pad10)" "unconnected-(U7-Pad13)" "unconnected-(J2-PAD-Pad0)_1"
-    "unconnected-(J2-PAD-Pad0)" "unconnected-(J2-Pad1)" "unconnected-(J2-Pad4)" "unconnected-(J2-Pad6)" "unconnected-(J2-Pad9)" "unconnected-(J1-D--Pad2)" "unconnected-(J1-D+-Pad3)"
+    DEN "Net-(U13-VS-)" NMI ~{IO02} ~{RES} ~{WR} ~{RD} "unconnected-(J3-Pin_23-Pad23)"
+    "unconnected-(J3-Pin_24-Pad24)" "Net-(D5-K)" L4 A19 ~{A19} IO{slash}~{M} ~{IO}{slash}M ~{ROMCS}
+    ~{RAMCS} "Net-(D7-K)" L6 "Net-(U11-RCLK)" RxD "unconnected-(U11-NC-Pad12)" TxD ~{IO01}
+    "unconnected-(U11-XOUT-Pad19)" "unconnected-(U11-NC-Pad23)" "unconnected-(U11-DDIS-Pad26)" "unconnected-(U11-~{TXRDY}-Pad27)" "unconnected-(U11-~{RXRDY}-Pad32)" INTR "unconnected-(U11-NC-Pad34)" "unconnected-(U11-~{OUT2}-Pad35)"
+    ~{RTS} "unconnected-(U11-~{DTR}-Pad37)" "unconnected-(U11-~{OUT1}-Pad38)" ~{CTS} "unconnected-(U11-~{DSR}-Pad41)" "unconnected-(U11-~{DCD}-Pad42)" "unconnected-(U11-~{RI}-Pad43)" "Net-(U13-C1+)"
+    "Net-(U13-VS+)" "Net-(U13-C1-)" "Net-(U13-C2+)" "Net-(U13-C2-)" UART8 UART7 UART3 UART2
+    "Net-(D4-K)" L3 "Net-(J1-Shield)" "Net-(D3-K)" L2 A18 A16 A15
+    A12 A10 A11 A9 A8 A13 A14 A17
+    "Net-(D8-K)" L7 ~{INTA} VIN "unconnected-(SW1-C-Pad3)" "unconnected-(U6-~{Y7}-Pad7)" "unconnected-(U6-~{Y6}-Pad9)" "unconnected-(U6-~{Y5}-Pad10)"
+    "unconnected-(U6-~{Y4}-Pad11)" ~{IO00} "Net-(D1-K)" L0 AD16 AD17 AD18 AD19
+    "unconnected-(U3-Q7-Pad12)" "unconnected-(U3-Q6-Pad13)" "unconnected-(U3-Q5-Pad14)" "unconnected-(U3-Q4-Pad15)" "Net-(D2-K)" "Net-(D6-K)" "unconnected-(U1-HLDA-Pad30)" "unconnected-(U1-~{SSO}-Pad34)"
+    L1 LATCH L5 "unconnected-(J2-PAD-Pad0)_1" "unconnected-(J2-PAD-Pad0)" "unconnected-(J2-Pad1)" "unconnected-(J2-Pad4)" "unconnected-(J2-Pad6)"
+    "unconnected-(J2-Pad9)" "unconnected-(J1-D--Pad2)" "unconnected-(J1-D+-Pad3)" "Net-(U12-XTAL1{slash}PB6)" "Net-(U12-XTAL2{slash}PB7)" "ON_BTN" "RESET_BTN" "Net-(U12-AREF)"
+    "Net-(U12-~{RESET}{slash}PC6)" "Net-(U7-Pad10)" "Net-(U14-CE)" "SERIAL_INT" "CTRL_TXD" CD1 CD4 "KB_DATA"
+    CD7 CD6 CD0 "CTRL_RXD" "KB_CLK" CD5 CD3 CD2
+    "VERA_INT" ~{IO03} "unconnected-(J4-Pad6)" "unconnected-(J4-Pad2)"
     (clearance_class "kicad_default")
     (via_rule kicad_default)
     (rule
