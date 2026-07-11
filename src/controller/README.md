@@ -27,8 +27,8 @@ sudo pacman -S make avr-gcc avr-libc avr-binutils avrdude
 What each package does:
 
 - `gcc-avr` / `avr-gcc`: cross-compiler that emits AVR machine code.
-- `avr-libc`: AVR headers and C runtime, including `<avr/io.h>` and
-  `<util/delay.h>`.
+- `avr-libc`: AVR headers and C runtime, including `<avr/io.h>` and interrupt
+  vector support.
 - `binutils-avr`: AVR linker, `avr-objcopy`, `avr-objdump`, and related tools.
 - `make`: runs the build recipe in `Makefile`.
 - `avrdude`: uploads the compiled firmware to the MCU through an ISP or serial
@@ -97,16 +97,22 @@ the external crystal is expected to own those pins.
 ## Firmware shape
 
 `include/board.h` contains the pin map pulled from the controller schematic.
-`src/main.c` currently starts with intentionally minimal behavior:
+`src/main.c` currently provides the board reset policy plus the first keyboard
+interrupt-controller path:
 
 - assert the board reset line immediately by driving `RES` low on `PB0`;
-- keep CPU interrupts disabled in firmware;
-- drive `INTR` low so the controller does not request an interrupt;
-- leave `CD0..CD7`, keyboard, serial interrupt, and bus control pins as inputs;
 - press `ON_BTN` to keep reset asserted for 0.5 s, then release the board;
 - hold `ON_BTN` for 3 s to assert reset again;
 - press `RESET_BTN` to assert a 0.2 s reset pulse.
+- receive PS/2 Set-2 scan codes on `KB_CLK`/`KB_DATA`;
+- ignore release/break codes and extended keys for now;
+- translate common make codes to lowercase ASCII;
+- assert active-high `INTR` when one ASCII byte is pending;
+- provide interrupt vector `0x20` during `~INTA`;
+- provide the pending ASCII byte during an `IO03` read, decoded by the board as
+  I/O `0x60`-`0x7F`;
+- pre-drive `CD0..CD7` while a key is pending, relying on the 74HCT245 to place
+  the byte on AD0..AD7 only while `~INTA` or `~IO03` is active.
 
-This gives you a safe place to add keyboard handling, interrupt-vector
-generation, debug serial, or power/reset policy without starting from a blank
-file.
+This is deliberately a one-byte test path. A later version should add a small
+keyboard queue, shift/caps handling, and richer interrupt-source arbitration.
